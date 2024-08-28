@@ -26,7 +26,7 @@ export default function DocumentIdPage ({params}:DocumentIdPageProps) {
 
   const update = useMutation(api.documents.update)
 
-  const onChange = (content:string) => {
+  const onChange = () => {
     update({
       id:params.documentId,
       content
