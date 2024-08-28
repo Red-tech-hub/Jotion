@@ -26,12 +26,19 @@ export default function DocumentIdPage ({params}:DocumentIdPageProps) {
 
   const update = useMutation(api.documents.update)
 
-  const onChange = () => {
+  const onChange = (content:string) => {
     update({
       id:params.documentId,
       content
     })
   }
+
+  const editorOnChange = () => {
+    const content = document?.content;
+    if (content !== undefined) {
+      onChange(content);
+    }
+  };
 
   if (document === undefined) {
     return (
@@ -58,7 +65,7 @@ return (
       <Cover url={document.coverImage}/>
       <div className="md:max-w-3xl lg:md-max-w-4xl mx-auto">
         <Toolbar initialData={document}/>
-        <Editor onChange={onChange} initialContent={document.content} />
+        <Editor onChange={editorOnChange} initialContent={document.content} />
       </div>
     </div>
 )

@@ -33,6 +33,13 @@ export default function DocumentIdPage ({params}:DocumentIdPageProps) {
     })
   }
 
+  const editorOnChange = () => {
+    const content = document?.content;
+    if (content !== undefined) {
+      onChange(content);
+    }
+  };
+
   if (document === undefined) {
     return (
       <div>
@@ -58,7 +65,7 @@ return (
       <Cover preview url={document.coverImage}/>
       <div className="md:max-w-3xl lg:md-max-w-4xl mx-auto">
         <Toolbar preview initialData={document}/>
-        <Editor editable={false} onChange={onChange} initialContent={document.content} />
+        <Editor editable={false} onChange={editorOnChange} initialContent={document.content} />
       </div>
     </div>
 )
